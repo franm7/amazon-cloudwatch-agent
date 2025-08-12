@@ -8,7 +8,7 @@ replace github.com/influxdata/telegraf => github.com/aws/telegraf v0.10.2-0.2025
 // to be all replaced since there are some changes that will always be from upstream
 replace (
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter => github.com/amazon-contributing/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter v0.0.0-20250717174233-f514045fc484
-	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsemfexporter => github.com/amazon-contributing/opentelemetry-collector-contrib/exporter/awsemfexporter v0.0.0-20250717174233-f514045fc484
+	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsemfexporter => ../opentelemetry-collector-contrib/exporter/awsemfexporter
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/awsxrayexporter => github.com/amazon-contributing/opentelemetry-collector-contrib/exporter/awsxrayexporter v0.0.0-20250717174233-f514045fc484
 )
 
@@ -42,7 +42,7 @@ replace (
 replace github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourcedetectionprocessor => github.com/amazon-contributing/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.0.0-20250717174233-f514045fc484
 
 replace (
-	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver => github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver v0.0.0-20250717174233-f514045fc484
+	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver => ../opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/awscontainerinsightskueuereceiver => github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awscontainerinsightskueuereceiver v0.0.0-20250717174233-f514045fc484
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/awsxrayreceiver => github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awsxrayreceiver v0.0.0-20250717174233-f514045fc484
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jmxreceiver => github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/jmxreceiver v0.0.0-20250717174233-f514045fc484
@@ -51,6 +51,8 @@ replace (
 
 // Temporary fix, pending PR https://github.com/shirou/gopsutil/pull/957
 replace github.com/shirou/gopsutil/v3 => github.com/aws/telegraf/patches/gopsutil/v3 v3.0.0-20250113150713-a2dfaa4cdf6d // indirect
+
+replace collectd.org => github.com/collectd/go-collectd v0.4.0
 
 //pin consul to a newer version to fix the ambiguous import issue
 //see https://github.com/hashicorp/consul/issues/6019 and https://github.com/hashicorp/consul/issues/6414
@@ -140,6 +142,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor v0.124.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatorateprocessor v0.124.1
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.124.1
+	github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.124.1
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbytraceprocessor v0.124.1
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.124.1
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricsgenerationprocessor v0.124.1

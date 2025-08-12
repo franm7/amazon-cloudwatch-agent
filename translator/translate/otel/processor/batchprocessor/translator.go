@@ -18,6 +18,7 @@ import (
 var defaultForceFlushInterval = map[string]time.Duration{
 	common.MetricsKey: 60 * time.Second,
 	common.LogsKey:    5 * time.Second,
+	"aggregate":       60 * time.Second,
 }
 
 type translator struct {

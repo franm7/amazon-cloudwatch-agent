@@ -50,34 +50,41 @@ func (t *translator) ID() component.ID {
 // Translate creates a processor config based on the fields in the
 // Metrics section of the JSON config.
 func (t *translator) Translate(conf *confmap.Conf) (component.Config, error) {
-	if conf == nil || (!conf.IsSet(common.JmxConfigKey) && t.Name() != common.PipelineNameContainerInsightsJmx) {
-		return nil, &common.MissingKeyError{ID: t.ID(), JsonKey: common.JmxConfigKey}
-	}
+    if conf == nil || (!conf.IsSet(common.JmxConfigKey) && 
+                       t.Name() != common.PipelineNameContainerInsightsJmx && 
+                       t.Name() != common.PipelineNameContainerInsights) {
+        return nil, &common.MissingKeyError{ID: t.ID(), JsonKey: common.JmxConfigKey}
+    }
 
-	cfg := t.factory.CreateDefaultConfig().(*resourceprocessor.Config)
-	var attributes []any
-	if strings.HasPrefix(t.Name(), common.PipelineNameJmx) {
-		attributes = t.getJMXAttributes(conf)
-	} else if t.Name() == common.PipelineNameContainerInsightsJmx {
-		attributes = t.getContainerInsightsJMXAttributes(conf)
-	}
-	if len(attributes) == 0 {
-		baseKey := common.JmxConfigKey
-		if t.Index() != -1 {
-			baseKey = fmt.Sprintf("%s[%d]", baseKey, t.Index())
-		}
-		return nil, &common.MissingKeyError{ID: t.ID(), JsonKey: common.ConfigKey(baseKey, common.AppendDimensionsKey)}
-	}
-	c := confmap.NewFromStringMap(map[string]any{
-		"attributes": attributes,
-	})
+    cfg := t.factory.CreateDefaultConfig().(*resourceprocessor.Config)
+    var attributes []any
+    if strings.HasPrefix(t.Name(), common.PipelineNameJmx) {
+        attributes = t.getJMXAttributes(conf)
+    } else if t.Name() == common.PipelineNameContainerInsightsJmx {
+        attributes = t.getContainerInsightsJMXAttributes(conf)
+    } else if t.Name() == common.PipelineNameContainerInsights {
+        attributes = t.deleteControlPlaneAttributes()
+    }
+    
+    if len(attributes) == 0 && t.Name() != common.PipelineNameContainerInsights {
+        baseKey := common.JmxConfigKey
+        if t.Index() != -1 {
+            baseKey = fmt.Sprintf("%s[%d]", baseKey, t.Index())
+        }
+        return nil, &common.MissingKeyError{ID: t.ID(), JsonKey: common.ConfigKey(baseKey, common.AppendDimensionsKey)}
+    }
+    
+    c := confmap.NewFromStringMap(map[string]any{
+        "attributes": attributes,
+    })
 
-	if err := c.Unmarshal(&cfg); err != nil {
-		return nil, fmt.Errorf("unable to unmarshal resource processor: %w", err)
-	}
+    if err := c.Unmarshal(&cfg); err != nil {
+        return nil, fmt.Errorf("unable to unmarshal resource processor: %w", err)
+    }
 
-	return cfg, nil
+    return cfg, nil
 }
+
 
 func (t *translator) getJMXAttributes(conf *confmap.Conf) []any {
 	if !context.CurrentContext().RunInContainer() {
@@ -130,3 +137,38 @@ func (t *translator) getContainerInsightsJMXAttributes(conf *confmap.Conf) []any
 		},
 	}
 }
+
+func (t *translator) deleteControlPlaneAttributes() []any {
+    return []any{
+        map[string]any{
+            "key":    "net.host.name",
+            // "value":  "container-insights", // Set to a constant value for all nodes
+            "action": "delete",
+        },
+        map[string]any{
+            "key":    "net.host.port",
+            "action": "delete",
+        },
+        map[string]any{
+            "key":    "server.address",
+            "action": "delete",
+        },
+        map[string]any{
+            "key":    "server.port",
+            "action": "delete",
+        },
+        map[string]any{
+            "key":    "service.instance.id",
+            "action": "delete",
+        },
+        map[string]any{
+            "key":    "http.scheme",
+            "action": "delete",
+        },
+        map[string]any{
+            "key":    "url.scheme",
+            "action": "delete",
+        },
+    }
+}
+ 

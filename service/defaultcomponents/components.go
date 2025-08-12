@@ -19,6 +19,7 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatocumulativeprocessor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatorateprocessor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbytraceprocessor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/metricsgenerationprocessor"
@@ -65,6 +66,8 @@ import (
 	"github.com/aws/amazon-cloudwatch-agent/plugins/processors/ec2tagger"
 	"github.com/aws/amazon-cloudwatch-agent/plugins/processors/gpuattributes"
 	"github.com/aws/amazon-cloudwatch-agent/plugins/processors/kueueattributes"
+	"github.com/aws/amazon-cloudwatch-agent/plugins/processors/controlplaneaggregator"
+	"github.com/aws/amazon-cloudwatch-agent/plugins/processors/controlplanelogger"
 	"github.com/aws/amazon-cloudwatch-agent/processor/rollupprocessor"
 	"github.com/aws/amazon-cloudwatch-agent/receiver/awsebsnvmereceiver"
 )
@@ -99,6 +102,8 @@ func Factories() (otelcol.Factories, error) {
 		awsapplicationsignals.NewFactory(),
 		awsentity.NewFactory(),
 		batchprocessor.NewFactory(),
+		controlplaneaggregator.NewFactory(),
+		controlplanelogger.NewFactory(),
 		cumulativetodeltaprocessor.NewFactory(),
 		deltatocumulativeprocessor.NewFactory(),
 		deltatorateprocessor.NewFactory(),
@@ -106,6 +111,7 @@ func Factories() (otelcol.Factories, error) {
 		filterprocessor.NewFactory(),
 		gpuattributes.NewFactory(),
 		kueueattributes.NewFactory(),
+		groupbyattrsprocessor.NewFactory(),
 		groupbytraceprocessor.NewFactory(),
 		k8sattributesprocessor.NewFactory(),
 		memorylimiterprocessor.NewFactory(),

@@ -48,8 +48,6 @@ cloud.google.com/go/storage v1.8.0/go.mod h1:Wv1Oy7z6Yz3DshWRJFhqM/UCfaWIRTdp0RX
 cloud.google.com/go/storage v1.10.0/go.mod h1:FLPqc6j+Ki4BU591ie1oL6qBQGu2Bl/tZ9ullr3+Kg0=
 code.cloudfoundry.org/clock v1.0.0 h1:kFXWQM4bxYvdBw2X8BbBeXwQNgfoWv1vqAk2ZZyBN2o=
 code.cloudfoundry.org/clock v1.0.0/go.mod h1:QD9Lzhd/ux6eNQVUDVRJX/RKTigpewimNYBi7ivZKY8=
-collectd.org v0.4.0 h1:nWNldfMqg7EVWAevG8oyOVsS9r/UHRG3LZRf6MdQho0=
-collectd.org v0.4.0/go.mod h1:A/8DzQBkF6abtvrT2j/AU/4tiBgJWYyh0y/oB/4MlWE=
 dario.cat/mergo v1.0.1 h1:Ra4+bf83h2ztPIQYNP99R6m+Y7KfnARDfID+a+vLl4s=
 dario.cat/mergo v1.0.1/go.mod h1:uNxQE+84aUszobStD9th8a29P2fMDhsBdgRYvZOxGmk=
 dmitri.shuralyov.com/gpu/mtl v0.0.0-20190408044501-666a987793e9/go.mod h1:H6x//7gZCb22OMCxBHrMx7a5I7Hp++hsVxbQ4BYO7hU=
@@ -189,8 +187,6 @@ github.com/aliyun/alibaba-cloud-sdk-go v1.61.1483 h1:J8HaD+Zpfi1gcel3HCKpoHHEsrc
 github.com/aliyun/alibaba-cloud-sdk-go v1.61.1483/go.mod h1:RcDobYh8k5VP6TNybz9m++gL3ijVI5wueVr0EM10VsU=
 github.com/amazon-contributing/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter v0.0.0-20250717174233-f514045fc484 h1:IF22WfUI0TUor8Yo6lN8dJD4TRcSLrX3oQzY3akPKZ8=
 github.com/amazon-contributing/opentelemetry-collector-contrib/exporter/awscloudwatchlogsexporter v0.0.0-20250717174233-f514045fc484/go.mod h1:K1bIX6HiFoEYD6o2UiZ4SfGZc2E/aFr4jGxpWAjboX0=
-github.com/amazon-contributing/opentelemetry-collector-contrib/exporter/awsemfexporter v0.0.0-20250717174233-f514045fc484 h1:0EG5xCpgZPsRXxbm0xwxNNIlBcb8FXGxF7vTn+y2Vz4=
-github.com/amazon-contributing/opentelemetry-collector-contrib/exporter/awsemfexporter v0.0.0-20250717174233-f514045fc484/go.mod h1:CFj1Fw9eREdVDfqABIc+QEuAW767hBJPumJBkFNxXXg=
 github.com/amazon-contributing/opentelemetry-collector-contrib/exporter/awsxrayexporter v0.0.0-20250717174233-f514045fc484 h1:wgc23Q8+P5FyKgHjW1VbxEYcHlMUFJItjLKKD8ei4Y8=
 github.com/amazon-contributing/opentelemetry-collector-contrib/exporter/awsxrayexporter v0.0.0-20250717174233-f514045fc484/go.mod h1:uxEu3AKt9Sn0Ymf6Zwnz5bxWtErQv5lC7fzrkQ+rN7M=
 github.com/amazon-contributing/opentelemetry-collector-contrib/extension/awsmiddleware v0.0.0-20250717174233-f514045fc484 h1:kxy1qp9CdfmLNosbFGrh+TwXiC/UdwJOQMKDhKzrEV4=
@@ -229,8 +225,6 @@ github.com/amazon-contributing/opentelemetry-collector-contrib/pkg/translator/pr
 github.com/amazon-contributing/opentelemetry-collector-contrib/pkg/translator/prometheus v0.0.0-20250717174233-f514045fc484/go.mod h1:7prJseoHF7mXXAPdU+q1zoZdVOclFZsgNhoBriqBIp0=
 github.com/amazon-contributing/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.0.0-20250717174233-f514045fc484 h1:cFRXqozAwclrrSJD/1fwrrebwNNVL8sAPvewZSmYl0k=
 github.com/amazon-contributing/opentelemetry-collector-contrib/processor/resourcedetectionprocessor v0.0.0-20250717174233-f514045fc484/go.mod h1:K8inysgi51ecddal8W6MPqrYcjh65wm1PsVDV+zgCEA=
-github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver v0.0.0-20250717174233-f514045fc484 h1:KkQR49FSmepOqBfze1zNBmAi06DUUSQzOS+lzQkSPTY=
-github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awscontainerinsightreceiver v0.0.0-20250717174233-f514045fc484/go.mod h1:78qZtZnv6jO7K56d1OUMtgTcH0rPcb4N8Zp4/EiMJ0o=
 github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awscontainerinsightskueuereceiver v0.0.0-20250717174233-f514045fc484 h1:NqDlh14x1674xIAnLC3iCvEmaLeGEorAzzWopMKAW9o=
 github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awscontainerinsightskueuereceiver v0.0.0-20250717174233-f514045fc484/go.mod h1:GipgrS7Hgv0MgjQ6c2CrEti5kWKsXSaqB+E2XrHmiy4=
 github.com/amazon-contributing/opentelemetry-collector-contrib/receiver/awsxrayreceiver v0.0.0-20250717174233-f514045fc484 h1:7Eq8GHafdPwuj/zruhctXzYyhtXUmp0FVAcsHX0V6Co=
@@ -409,6 +403,8 @@ github.com/cncf/udpa/go v0.0.0-20201120205902-5459f2c99403/go.mod h1:WmhPx2Nbnht
 github.com/cncf/xds/go v0.0.0-20210312221358-fbca930ec8ed/go.mod h1:eXthEFrGJvWHgFFCl3hGmgk+/aYT6PnTQLykKQRLhEs=
 github.com/cncf/xds/go v0.0.0-20250121191232-2f005788dc42 h1:Om6kYQYDUk5wWbT0t0q6pvyM49i9XZAv9dDrkDA7gjk=
 github.com/cncf/xds/go v0.0.0-20250121191232-2f005788dc42/go.mod h1:W+zGtBO5Y1IgJhy4+A9GOqVhqLpfZi+vwmdNXUehLA8=
+github.com/collectd/go-collectd v0.4.0 h1:0u1GXChSSlMw+riTADhcWwTjugckVWxjQHJi7Zj2Xe4=
+github.com/collectd/go-collectd v0.4.0/go.mod h1:xQe/Em/Q9IrN5ifWOvK5ZP2vMIB4KlsIA550yYzhkpY=
 github.com/containerd/cgroups/v3 v3.0.3 h1:S5ByHZ/h9PMe5IOQoN7E+nMc2UcLEM/V48DGDJ9kip0=
 github.com/containerd/cgroups/v3 v3.0.3/go.mod h1:8HBe7V3aWGLFPd/k03swSIsGjZhHI2WzJmticMgVuz0=
 github.com/containerd/containerd/api v1.8.0 h1:hVTNJKR8fMc/2Tiw60ZRijntNMd1U+JVMyTRdsD2bS0=
@@ -1274,6 +1270,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatoratep
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/deltatorateprocessor v0.124.1/go.mod h1:bp3Y5GT4dkGWRGEZqKgfanyk6ZSsVGNY5aNDvX4c8WE=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.124.1 h1:qkqiqLwfg7hj+oDYvpmMD64p+poaxXwo654ZE44uPm4=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/filterprocessor v0.124.1/go.mod h1:B/GP3l4Y1qNsNtWVIzpwS8jWB1Nn/vx0sFBlVDkWt9E=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.124.1 h1:gYlUUIR+lzLQCpj5phh+Ogmk5BRaOrEuKGjIixCk89I=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.124.1/go.mod h1:bkAXtBtShDOA8SuF8IpYbhx1BYWUEE1rW10HXXEXW/4=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbytraceprocessor v0.124.1 h1:6MAKxLXfQWHEadn9AgY1jWdKFTJkLYVBa+/h3Rk23lE=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbytraceprocessor v0.124.1/go.mod h1:6q2oIAtCuX9HklnqGPO8sWPoTAjhZX1x23O0aTR/zd0=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/k8sattributesprocessor v0.124.1 h1:esSFJIhlZaZslW9EYY/Ss5zUnfkuN2qiS+7ujk73/gU=

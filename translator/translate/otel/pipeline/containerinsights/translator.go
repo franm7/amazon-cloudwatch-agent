@@ -14,13 +14,18 @@ import (
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/exporter/awsemf"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/extension/agenthealth"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/awsentity"
-	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/batchprocessor"
+	// "github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/batchprocessor"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/filterprocessor"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/gpu"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/kueue"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/metricstransformprocessor"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/receiver/awscontainerinsight"
 	"github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/receiver/awscontainerinsightskueue"
+    "github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/controlplanelogger"
+    // "github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/resourceprocessor"
+    // "github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/groupbyattrsprocessor"
+    "github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/cumulativetodeltaprocessor"
+    "github.com/aws/amazon-cloudwatch-agent/translator/translate/otel/processor/controlplaneaggregator"
 )
 
 const (
@@ -62,7 +67,8 @@ func (t *translator) Translate(conf *confmap.Conf) (*common.ComponentTranslators
 	// - default batch processor
 	// - filter processor to drop prometheus metadata
 	processors := common.NewTranslatorMap(
-		batchprocessor.NewTranslatorWithNameAndSection(t.pipelineName, common.LogsKey),
+		// batchprocessor.NewTranslatorWithNameAndSection(t.pipelineName, "aggregate"),
+		// controlplanelogger.NewTranslatorWithName("logger_2_" + t.pipelineName),
 		filterprocessor.NewTranslator(common.WithName(t.pipelineName)),
 	)
 	// create exporter map with default emf exporter based on pipeline name
@@ -86,7 +92,17 @@ func (t *translator) Translate(conf *confmap.Conf) (*common.ComponentTranslators
 		enhancedContainerInsightsEnabled := awscontainerinsight.EnhancedContainerInsightsEnabled(conf)
 		if enhancedContainerInsightsEnabled {
 			// add metricstransformprocessor to processors for enhanced container insights
+			// processors.Set(controlplanelogger.NewTranslatorWithName("logger_1_" + t.pipelineName))
 			processors.Set(metricstransformprocessor.NewTranslatorWithName(t.pipelineName))
+			// processors.Set(resourceprocessor.NewTranslator(common.WithName(t.pipelineName)))
+			// processors.Set(groupbyattrsprocessor.NewTranslatorWithName(ciPipelineName))
+			// processors.Set(controlplanelogger.NewTranslatorWithName("logger_2_" + t.pipelineName))
+			processors.Set(cumulativetodeltaprocessor.NewTranslator(
+            cumulativetodeltaprocessor.WithConfigKeys(eksKey),
+            common.WithName(ciPipelineName),
+            ))
+			processors.Set(controlplaneaggregator.NewTranslatorWithName("Aggregator" + t.pipelineName))
+			processors.Set(controlplanelogger.NewTranslatorWithName("logger_3_" + t.pipelineName))
 			acceleratedComputeMetricsEnabled := awscontainerinsight.AcceleratedComputeMetricsEnabled(conf)
 			if acceleratedComputeMetricsEnabled {
 				processors.Set(gpu.NewTranslatorWithName(t.pipelineName))
